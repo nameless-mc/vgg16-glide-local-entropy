@@ -1,0 +1,16 @@
+Pillow
+attrs
+torch
+torchvision
+filelock
+requests
+tqdm
+ftfy
+regex
+numpy
+matplotlib
+opencv-python
+autopep8
+scipy
+seaborn
+wandb
