@@ -87,7 +87,7 @@ def run(target_step):
 
                 # 1ステップにおける訓練用ミニバッチを使用した学習
                 # tqdmでプログレスバーを表示する
-                for inputs, labels in tqdm(dataloaders[phase]):
+                for inputs, labels, _ in tqdm(dataloaders[phase]):
                     # torch.Tensorオブジェクトにデバイスを割り当てる
                     inputs, labels = inputs.to(device), labels.to(device)
 
