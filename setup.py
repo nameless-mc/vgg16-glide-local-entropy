@@ -6,6 +6,6 @@ def _requires_from_file(filename):
     return list(filter(lambda x : not (len(x) == 0 or x.startswith('#')), ls))
 
 setup(
-    name = "vgg16-for-glide",
+    name = "vgg16_for_glide",
     install_requires = _requires_from_file('requirements.txt')
 )
