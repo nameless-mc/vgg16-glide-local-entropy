@@ -3,32 +3,31 @@ import torch.utils.data
 import torch.nn as nn
 import torch.optim as optim
 
-from utils.dataset import ImageDataset, ImageDataImg
-from utils.image_transform import ImageTransform
+from vgg16glide.utils.dataset import ImageDataset
+from vgg16glide.utils.image_transform import ImageTransform
 import glob
 import os
 from tqdm import tqdm
-from utils.image_transform_img import ImageTransformImg
-from utils.model import create_model
+from vgg16glide.utils.model import create_model
 import wandb
 
-from utils.dataset import ImageData
-from utils.image_transform import ImageTransform
+from vgg16glide.utils.dataset import ImageData
+from vgg16glide.utils.image_transform import ImageTransform
 
 def run(target_step):
-    dir_path = "dataset/test_data/train"
-    file_path = "image_steps"
-    project_name = 'vgg16-color-step-images'
+    dir_path = "dataset/train"
+    file_path = "entropy_heatmap/csv"
+    project_name = 'vgg16-glide-local-entropy-map-0-255'
 
-    num_epochs = 25
+    num_epochs = 100
 
     file_list = []
-    transform = ImageTransformImg()
+    transform = ImageTransform()
 
-    for f in glob.glob(os.path.join(dir_path, "0", "*", file_path, str(target_step) + ".png")):
-        file_list.append(ImageDataImg(f, 0, transform))
-    for f in glob.glob(os.path.join(dir_path, "1", "*", file_path, str(target_step) + ".png")):
-        file_list.append(ImageDataImg(f, 1, transform))
+    for f in glob.glob(os.path.join(dir_path, "0", "*", file_path, str(target_step) + ".csv")):
+        file_list.append(ImageData(f, 0, transform))
+    for f in glob.glob(os.path.join(dir_path, "1", "*", file_path, str(target_step) + ".csv")):
+        file_list.append(ImageData(f, 1, transform))
 
     # ミニバッチのサイズを指定
     batch_size = 32
@@ -142,6 +141,5 @@ def run(target_step):
     wandb.finish()
 
 
-for i in reversed(range(0, 99, 3)):
-    print("step:", i)
+for i in reversed(range(0, 99)):
     run(i)

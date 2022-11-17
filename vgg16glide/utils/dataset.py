@@ -2,8 +2,8 @@ from typing import List
 import torch.utils.data as data
 import PIL.Image as Image
 import numpy as np
-from utils.image_transform import ImageTransform
-from utils.image_transform_img import ImageTransformImg
+from vgg16glide.utils.image_transform import ImageTransform
+from vgg16glide.utils.image_transform_img import ImageTransformImg
 
 class Data:
     def get(self, phase):

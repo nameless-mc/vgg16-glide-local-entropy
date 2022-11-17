@@ -3,10 +3,10 @@ import json
 import os
 import torch
 import torch.utils.data
-from classifier import classifier
-from utils.dataset import ImageData, ImageDataset
-from utils.image_transform import ImageTransform
-from utils.model import create_model
+from vgg16glide.classifier import classifier
+from vgg16glide.utils.dataset import ImageData, ImageDataset
+from vgg16glide.utils.image_transform import ImageTransform
+from vgg16glide.utils.model import create_model
 import numpy as np
 
 
